@@ -1,54 +1,43 @@
 # QtAwesome - Font Awesome for Qt Applications
 
-QtAwesome is a library to add [Font Awesome](https://fontawesome.com)
-icons to your [Qt application](http://qt-project.org/).
+QtAwesome is a library to add [Font Awesome](https://fontawesome.com) icons to your [Qt application](http://qt-project.org/).
 
 ## Table of Contents
 
-- [Latest Release 6.7.2](#latest-release-672)
-- [Font Awesome 6 Release](#font-awesome-6-release)
+- [Latest Release 7](#latest-release-7)
 - [Installation Free Version](#installation-free-version)
 - [Installation Pro version](#installation-pro-version)
+- [Installation Pro Plus version](#installation-pro-plus-version)
 - [Basic Usage](#basic-usage)
 - [Examples](#examples)
 - [Example Custom Painter](#example-custom-painter)
 - [Default options](#default-options)
 - [Known Issues And Workarounds](#known-issues-and-workarounds)
-- [Summary of Changes](#summary-of-changes)
 - [Thanks](#thanks)
 - [Contact](#contact)
 - [License](#license)
 
-## Latest Release 6.7.2
+## Latest Release 7
 
-Update of font files to 6.7.2
+Updated to Font Awesome 7
+When using Pro+, the extra styles Chisel, Etch, Jelly, Notdog, Slab, Thumbprint and Whiteboard are available.
 
 [View changelog](CHANGES.md)
 
-## Font Awesome 6 Release
-
-This is the Font Awesome 6 release. It replaces the main branch, which still was a Font Awesome 4 version.
-(There's also a Font Awesome 5 branch, but was never merged to the main/master branch.)
-
-This release is **not** completely backwards compatible with the 4 and 5 releases.
-The decision was made for a new clean version which better suited for the future.
-(A compatibility layer is in development).
-
-Previous versions used a hand-crafted icon list, this version has a generated list.
-
 Having troubles with this new release?
 
-- You can find the previous `master` branch in the [fontawesome-4](https://github.com/gamecreature/QtAwesome/tree/fontawesome-4) branch. (`master` is dropped in favour of `main`)
+- The [main](https://github.com/gamecreature/QtAwesome/) branch contains the latest Font Awesome 7 version.
+- The [fontawesome-6](https://github.com/gamecreature/QtAwesome/tree/fontawesome-6) branch contains the Font Awesome 6 version
 - The [fontawesome-5](https://github.com/gamecreature/QtAwesome/tree/fontawesome-5) branch contains the Font Awesome 5 version.
-- The new [main](https://github.com/gamecreature/QtAwesome/) branch contains the latest Font Awesome 6 version.
-- Open a github issue if you'v found a bug or have a suggestion
+- You can find the previous `master` branch in the [fontawesome-4](https://github.com/gamecreature/QtAwesome/tree/fontawesome-4) branch. (`master` is dropped in favour of `main`)
+- Open a github issue if you've found a bug or have a suggestion
 
 ## Installation Free Version
 
-The easiest way to include QtAweome in your project is to copy the QtAwesome directory to your
-project tree and add the following `include()` to your Qt project file:
+You can include QtAweome to your project by copying the QtAwesome directory to
+your project tree and add the following `include()` to your Qt project file:
 
-```bash
+```sh
 CONFIG+=fontAwesomeFree
 include(QtAwesome/QtAwesome.pri)
 ```
@@ -59,17 +48,31 @@ Now you are good to go! The free fonts are included in this project.
 
 To activate the pro version, `fontAwesomePro` config should be defined.
 
-```bash
+```sh
 CONFIG+=fontAwesomePro
 include(QtAwesome/QtAwesome.pri)
 ```
 
 And the pro font files need to be copied to the `QtAwesome/fonts/pro` folder.
-(ex, Font Awesome 6 Brands-Regular-400.otf, etc... )
+
+
+## Installation Pro Plus version
+
+To activate the pro+ version, `fontAwesomePro` config should be defined.
+
+```sh
+CONFIG+=fontAwesomePro
+include(QtAwesome/QtAwesome.pri)
+```
+
+Using the fontAwesomePro config, implies the definition of
+FONT_AWESOME_PRO, and FONT_AWESOME_PRO_PLUS)
+
+Place the pro+ font files to the `QtAwesome/fonts/pro` folder.
 
 ## Basic Usage
 
-You probably want to create a single QtAwesome object for your whole application.
+Create a single QtAwesome object for your whole application.
 
 ```c++
 fa::QtAwesome* awesome = new fa::QtAwesome(qApp)
@@ -97,7 +100,7 @@ QPushButton* btn = new QPushButton(awesome->icon("solid coffee" ), "Black please
 QPushButton* btn = new QPushButton(awesome->icon("coffee" ), "Black please!");
 ```
 
-For shorter syntax (more Font Aweseome like) is possible to bring the fa namespace into the curren scope:
+For shorter syntax (more Font Awesome like) is possible to bring the fa namespace into the current scope:
 
 ```c++
 using namespace fa;
@@ -113,7 +116,7 @@ options.insert("color" , QColor(255, 0 ,0));
 QPushButton* musicButton = new QPushButton(awesome->icon(fa::fa_solid, fa::music, options), "Music");
 ```
 
-The defaults option can also be adjusted via the `setDefaultOption` method.\
+The defaults option can also be adjusted via the `setDefaultOption` method.
 For example having green disabled icons, it is possible to call:
 
 ```c++
@@ -193,7 +196,7 @@ setDefaultOption("duotone-color-active", QApplication::palette().color(QPalette:
 setDefaultOption("duotone-color-selected", QApplication::palette().color(QPalette::Active, QPalette::BrightText));
 ```
 
-When creating an icon, it first populates the options-map with the default options from the QtAwesome object.
+When creating an icon, it first populates the options map with the default options from the QtAwesome object.
 After that the options are expanded/overwritten by the options supplied to the icon.
 
 It is possible to use another glyph per icon-state. For example to make an icon-unlock symbol switch to locked when selected,
@@ -256,26 +259,17 @@ QAction* menuAction = new QAction("test");
 menuAction->setIcon(awesome->icon(fa::fa_heart).pixmap(32,32));
 ```
 
-## Summary of Changes
-
-- The complete icons set is renewed and is generated
-- Everything is namespaced in the `fa` namespace
-- Icon name enumerations are changed so the full Font Aweomse name is used: `fa::user`  => `fa::fa_user`.
-  With the dashes replaced by underscores.
-- Font Awesome 6 full style names, like `fa::fa_regular`, `fa::fa_solid`
-- This release has been tested with Qt 5 and Qt 6.
-
 ## Thanks
 
 Thanks go to the contributors of this project!
 
-Many thanks go to Dave Gandy an the other Font Awesome contributors!! [https://github.com/FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
+Many thanks go to Dave Gandy and the other Font Awesome contributors!! [https://github.com/FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
 And of course to the Qt team/contributors for supplying this great cross-platform c++ library.
 
 Contributions are welcome! Feel free to fork and send a pull request through Github.
 
 <a href="https://github.com/gamecreature/qtawesome/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=gamecreature/qtawesome" />
+<img src="https://contrib.rocks/image?repo=gamecreature/qtawesome" />
 </a>
 
 <small>*Contribution list made with [contrib.rocks](https://contrib.rocks).*</small>
@@ -290,8 +284,8 @@ Contributions are welcome! Feel free to fork and send a pull request through Git
 
 ## License
 
-MIT License. Copyright 2013-2022 - Reliable Bits Software by Blommers IT. [https://blommersit.nl/](https://blommersit.nl)
+MIT License. Copyright 2013-2025 - Ribit Software by Blommers IT. [https://blommersit.nl/](https://blommersit.nl)
 
 The Font Awesome font is licensed under the SIL Open Font License - [https://scripts.sil.org/OFL](http://scripts.sil.org/OFL)
 The Font Awesome pictograms are licensed under the CC BY 3.0 License - [https://creativecommons.org/licenses/by/3.0/](http://creativecommons.org/licenses/by/3.0/)
-"Font Awesome by Dave Gandy - https://github.com/FortAwesome/Font-Awesome"
+"Font Awesome by Dave Gandy - <https://github.com/FortAwesome/Font-Awesome>"

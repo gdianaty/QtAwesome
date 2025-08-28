@@ -2,8 +2,8 @@ defineReplace( resourcesForConfig ){
     return($$PWD/QtAwesome$$eval($$1).qrc)
 }
 
-options = $$find(CONFIG, fontAwesomePro) $$find(CONFIG, fontAwesomeFree)
-count(options, 0) { error("fontAwesomePro or fontAwesomeFree should be defined") }
+options = $$find(CONFIG, fontAweomeProPlus) $$find(CONFIG, fontAwesomePro) $$find(CONFIG, fontAwesomeFree)
+count(options, 0) { error("fontAwesomeProPlus, fontAwesomePro or fontAwesomeFree should be defined") }
 count(options, 2) { error("fontAwesomePro and fontAwesomeFree were defined, only one config is accepted") }
 
 INCLUDEPATH += $$PWD
@@ -17,6 +17,13 @@ HEADERS += $$PWD/QtAwesome.h \
     $$PWD/QtAwesomeEnumGenerated.h \
     $$PWD/QtAwesomeStringGenerated.h
 
+
+CONFIG( fontAwesomeProPlus ){
+    config = ProPlus
+    RESOURCES += $$resourcesForConfig(config)
+    DEFINES += FONT_AWESOME_PRO_PLUS=1
+    !build_pass:message(using font awesome pro+)
+}
 
 CONFIG( fontAwesomePro ){
     config = Pro

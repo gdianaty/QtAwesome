@@ -10,6 +10,7 @@ CONFIG += staticlib c++11
 QT += widgets
 
 # only one option must be enabled
+#CONFIG += fontAwesomeProPlus
 #CONFIG += fontAwesomePro
 CONFIG += fontAwesomeFree
 include(QtAwesome.pri)

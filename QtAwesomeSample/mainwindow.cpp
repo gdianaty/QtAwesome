@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Solid", fa::fa_solid);
     ui->comboBox->addItem("Brands", fa::fa_brands);
     ui->comboBox->addItem("Regular", fa::fa_regular);
-#ifdef FONT_AWESOME_PRO
+#if defined(FONT_AWESOME_PRO)
     ui->comboBox->addItem("Light", fa::fa_light);
     ui->comboBox->addItem("Thin", fa::fa_thin);
     // ui->comboBox->addItem("Duotone", fa::fa_duotone); // DEPRECATED
@@ -33,6 +33,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Sharp Duotone Regular", fa::fa_sharp_duotone_regular);
     ui->comboBox->addItem("Sharp Duotone Light", fa::fa_sharp_duotone_light);
     ui->comboBox->addItem("Sharp Duotone Thin", fa::fa_sharp_duotone_thin);
+#endif
+
+#if defined(FONT_AWESOME_PRO_PLUS)
+    ui->comboBox->addItem("Chisel Regular", fa::fa_chisel_regular);
+    ui->comboBox->addItem("Etch Solid", fa::fa_etch_solid);
+    ui->comboBox->addItem("Jelly Regular", fa::fa_jelly_regular);
+    ui->comboBox->addItem("Jelly Duotone Regular", fa::fa_jelly_duotone_regular);
+    ui->comboBox->addItem("Jelly Fill Regular", fa::fa_jelly_fill_regular);
+    ui->comboBox->addItem("Notdog Duotone Solid", fa::fa_notdog_duotone_solid);
+    ui->comboBox->addItem("Notdog Solid", fa::fa_notdog_solid);
+    ui->comboBox->addItem("Slab Press Regular", fa::fa_slab_press_regular);
+    ui->comboBox->addItem("Slab Regular", fa::fa_slab_regular);
+    ui->comboBox->addItem("Thumbprint Light", fa::fa_thumbprint_light);
+    ui->comboBox->addItem("Whiteboard Semibold", fa::fa_whiteboard_semibold);
 #endif
 
     // a simple beer button
