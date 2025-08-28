@@ -3,7 +3,7 @@
  *
  * MIT Licensed
  *
- * Copyright 2013-2024 - Reliable Bits Software by Blommers IT. All Rights Reserved.
+ * Copyright 2013-2025 - Ribit Software by Blommers IT. All Rights Reserved.
  * Author Rick Blommers
  */
 
@@ -27,7 +27,9 @@
 // Initializing namespaces need to happen outside a namespace
 static void qtawesome_init_resources()
 {
-#ifdef FONT_AWESOME_PRO
+#if defined(FONT_AWESOME_PRO_PLUS)
+    Q_INIT_RESOURCE(QtAwesomeProPlus);
+#elif defined(FONT_AWESOME_PRO)
     Q_INIT_RESOURCE(QtAwesomePro);
 #else
     Q_INIT_RESOURCE(QtAwesomeFree);
@@ -211,31 +213,49 @@ private:
 
 //---------------------------------------------------------------------------------------
 
-const QString QtAwesome::FA_BRANDS_FONT_FILENAME = "Font Awesome 6 Brands-Regular-400.otf";
-#ifdef FONT_AWESOME_PRO
-const QString QtAwesome::FA_DUOTONE_FONT_FILENAME = "pro/Font Awesome 6 Duotone-Solid-900.otf"; // DEPRECATED, use FA_DUOTONE_SOLID_FONT_FILENAME
-const QString QtAwesome::FA_DUOTONE_SOLID_FONT_FILENAME = "pro/Font Awesome 6 Duotone-Solid-900.otf";
-const QString QtAwesome::FA_DUOTONE_REGULAR_FONT_FILENAME = "pro/Font Awesome 6 Duotone-Regular-400.otf";
-const QString QtAwesome::FA_DUOTONE_LIGHT_FONT_FILENAME = "pro/Font Awesome 6 Duotone-Light-300.otf";
-const QString QtAwesome::FA_DUOTONE_THIN_FONT_FILENAME = "pro/Font Awesome 6 Duotone-Thin-100.otf";
+const QString QtAwesome::FA_BRANDS_FONT_FILENAME = "Font Awesome 7 Brands-Regular-400.otf";
 
-const QString QtAwesome::FA_SOLID_FONT_FILENAME = "pro/Font Awesome 6 Pro-Solid-900.otf";
-const QString QtAwesome::FA_REGULAR_FONT_FILENAME = "pro/Font Awesome 6 Pro-Regular-400.otf";
-const QString QtAwesome::FA_LIGHT_FONT_FILENAME = "pro/Font Awesome 6 Pro-Light-300.otf";
-const QString QtAwesome::FA_THIN_FONT_FILENAME = "pro/Font Awesome 6 Pro-Thin-100.otf";
+#if defined(FONT_AWESOME_PRO)
+const QString QtAwesome::FA_DUOTONE_FONT_FILENAME = "pro/Font Awesome 7 Duotone-Solid-900.otf"; // DEPRECATED, use FA_DUOTONE_SOLID_FONT_FILENAME
+const QString QtAwesome::FA_DUOTONE_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Duotone-Solid-900.otf";
+const QString QtAwesome::FA_DUOTONE_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Duotone-Regular-400.otf";
+const QString QtAwesome::FA_DUOTONE_LIGHT_FONT_FILENAME = "pro/Font Awesome 7 Duotone-Light-300.otf";
+const QString QtAwesome::FA_DUOTONE_THIN_FONT_FILENAME = "pro/Font Awesome 7 Duotone-Thin-100.otf";
 
-const QString QtAwesome::FA_SHARP_SOLID_FONT_FILENAME = "pro/Font Awesome 6 Sharp-Solid-900.otf";
-const QString QtAwesome::FA_SHARP_REGULAR_FONT_FILENAME = "pro/Font Awesome 6 Sharp-Regular-400.otf";
-const QString QtAwesome::FA_SHARP_LIGHT_FONT_FILENAME = "pro/Font Awesome 6 Sharp-Light-300.otf";
-const QString QtAwesome::FA_SHARP_THIN_FONT_FILENAME = "pro/Font Awesome 6 Sharp-Thin-100.otf";
+const QString QtAwesome::FA_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Pro-Solid-900.otf";
+const QString QtAwesome::FA_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Pro-Regular-400.otf";
+const QString QtAwesome::FA_LIGHT_FONT_FILENAME = "pro/Font Awesome 7 Pro-Light-300.otf";
+const QString QtAwesome::FA_THIN_FONT_FILENAME = "pro/Font Awesome 7 Pro-Thin-100.otf";
 
-const QString QtAwesome::FA_SHARP_DUOTONE_SOLID_FONT_FILENAME = "pro/Font Awesome 6 Sharp Duotone-Solid-900.otf";
-const QString QtAwesome::FA_SHARP_DUOTONE_REGULAR_FONT_FILENAME = "pro/Font Awesome 6 Sharp Duotone-Regular-400.otf";
-const QString QtAwesome::FA_SHARP_DUOTONE_LIGHT_FONT_FILENAME = "pro/Font Awesome 6 Sharp Duotone-Light-300.otf";
-const QString QtAwesome::FA_SHARP_DUOTONE_THIN_FONT_FILENAME = "pro/Font Awesome 6 Sharp Duotone-Thin-100.otf";
+const QString QtAwesome::FA_SHARP_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Sharp-Solid-900.otf";
+const QString QtAwesome::FA_SHARP_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Sharp-Regular-400.otf";
+const QString QtAwesome::FA_SHARP_LIGHT_FONT_FILENAME = "pro/Font Awesome 7 Sharp-Light-300.otf";
+const QString QtAwesome::FA_SHARP_THIN_FONT_FILENAME = "pro/Font Awesome 7 Sharp-Thin-100.otf";
+
+const QString QtAwesome::FA_SHARP_DUOTONE_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Sharp Duotone-Solid-900.otf";
+const QString QtAwesome::FA_SHARP_DUOTONE_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Sharp Duotone-Regular-400.otf";
+const QString QtAwesome::FA_SHARP_DUOTONE_LIGHT_FONT_FILENAME = "pro/Font Awesome 7 Sharp Duotone-Light-300.otf";
+const QString QtAwesome::FA_SHARP_DUOTONE_THIN_FONT_FILENAME = "pro/Font Awesome 7 Sharp Duotone-Thin-100.otf";
+
+#ifdef FONT_AWESOME_PRO_PLUS
+
+const QString QtAwesome::FA_CHISEL_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Chisel-Regular-400";
+const QString QtAwesome::FA_ETCH_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Etch-Solid-900.otf";
+const QString QtAwesome::FA_JELLY_DUOTONE_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Jelly Duo-Regular-400.otf";
+const QString QtAwesome::FA_JELLY_FILL_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Jelly Fill-Regular-400";
+const QString QtAwesome::FA_JELLY_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Jelly-Regular-400.otf";
+const QString QtAwesome::FA_NOTDOG_DUOTONE_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Notdog Duo-Solid-900.otf";
+const QString QtAwesome::FA_NOTDOG_SOLID_FONT_FILENAME = "pro/Font Awesome 7 Notdog-Solid-900.otf";
+const QString QtAwesome::FA_SLAB_PRESS_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Slab Press-Regular-400.otf";
+const QString QtAwesome::FA_SLAB_REGULAR_FONT_FILENAME = "pro/Font Awesome 7 Slab-Regular-400.otf";
+const QString QtAwesome::FA_THUMBPRINT_LIGHT_FONT_FILENAME = "pro/Font Awesome 7 Thumbprint-Light-300.otf";
+const QString QtAwesome::FA_WHITEBOARD_SEMIBOLD_FONT_FILENAME = "pro/Font Awesome 7 Whiteboard-Semibold-600.otf";
+
+#endif
+
 #else
-const QString QtAwesome::FA_REGULAR_FONT_FILENAME = "Font Awesome 6 Free-Regular-400.otf";
-const QString QtAwesome::FA_SOLID_FONT_FILENAME = "Font Awesome 6 Free-Solid-900.otf";
+const QString QtAwesome::FA_REGULAR_FONT_FILENAME = "Font Awesome 7 Free-Regular-400.otf";
+const QString QtAwesome::FA_SOLID_FONT_FILENAME = "Font Awesome 7 Free-Solid-900.otf";
 #endif
 
 /// The default icon colors
@@ -268,6 +288,20 @@ QtAwesome::QtAwesome(QObject* parent)
     _fontDetails.insert(fa::fa_sharp_duotone_regular, QtAwesomeFontData(FA_SHARP_DUOTONE_REGULAR_FONT_FILENAME, FA_SHARP_DUOTONE_REGULAR_FONT_WEIGHT));
     _fontDetails.insert(fa::fa_sharp_duotone_light, QtAwesomeFontData(FA_SHARP_DUOTONE_LIGHT_FONT_FILENAME, FA_SHARP_DUOTONE_LIGHT_FONT_WEIGHT));
     _fontDetails.insert(fa::fa_sharp_duotone_thin, QtAwesomeFontData(FA_SHARP_DUOTONE_THIN_FONT_FILENAME, FA_SHARP_DUOTONE_THIN_FONT_WEIGHT));
+#endif
+
+#ifdef FONT_AWESOME_PRO_PLUS
+    _fontDetails.insert(fa::fa_chisel_regular, QtAwesomeFontData(FA_CHISEL_REGULAR_FONT_FILENAME, FA_CHISEL_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_etch_solid, QtAwesomeFontData(FA_ETCH_SOLID_FONT_FILENAME, FA_ETCH_SOLID_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_jelly_regular, QtAwesomeFontData(FA_JELLY_REGULAR_FONT_FILENAME, FA_JELLY_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_jelly_duotone_regular, QtAwesomeFontData(FA_JELLY_DUOTONE_REGULAR_FONT_FILENAME, FA_JELLY_DUOTONE_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_jelly_fill_regular, QtAwesomeFontData(FA_JELLY_FILL_REGULAR_FONT_FILENAME, FA_JELLY_FILL_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_notdog_duotone_solid, QtAwesomeFontData(FA_NOTDOG_DUOTONE_SOLID_FONT_FILENAME, FA_NOTDOG_DUOTONE_SOLID_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_notdog_solid, QtAwesomeFontData(FA_NOTDOG_SOLID_FONT_FILENAME, FA_NOTDOG_SOLID_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_slab_press_regular, QtAwesomeFontData(FA_SLAB_PRESS_REGULAR_FONT_FILENAME, FA_SLAB_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_slab_regular, QtAwesomeFontData(FA_SLAB_REGULAR_FONT_FILENAME, FA_SLAB_REGULAR_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_thumbprint_light, QtAwesomeFontData(FA_THUMBPRINT_LIGHT_FONT_FILENAME, FA_THUMBPRINT_LIGHT_FONT_WEIGHT));
+    _fontDetails.insert(fa::fa_whiteboard_semibold, QtAwesomeFontData(FA_WHITEBOARD_SEMIBOLD_FONT_FILENAME, FA_WHITEBOARD_SEMIBOLD_FONT_WEIGHT));
 #endif
 
 #ifdef USE_COLOR_SCHEME
@@ -311,8 +345,8 @@ QtAwesome::~QtAwesome()
     qDeleteAll(_namedCodepointsList);
 }
 
-/// a specialized init function so font-awesome is loaded and initialized
-/// this method return true on success, it will return false if the fnot cannot be initialized
+/// A specialized init function so font-awesome is loaded and initialized
+/// This method return true on success, it will return false if the font cannot be initialized
 /// To initialize QtAwesome with font-awesome you need to call this method
 bool QtAwesome::initFontAwesome()
 {
@@ -320,9 +354,9 @@ bool QtAwesome::initFontAwesome()
     // The macro below internally calls "qInitResources_QtAwesome()". this initializes
     // the resource system. For a .pri project this isn't required, but when building and using a
     // static library the resource need to initialized first.
-    ///
-    // I've checked th qInitResource_* code and calling this method mutliple times shouldn't be any problem
-    // (More info about this subject:  http://qt-project.org/wiki/QtResources)
+    //
+    // I've checked th qInitResource_* code and calling this method multiple times shouldn't be any problem
+    // (More info about this subject:  <http://qt-project.org/wiki/QtResources>)
     qtawesome_init_resources();
 
     for (QtAwesomeFontData &fd : _fontDetails) {
@@ -376,6 +410,20 @@ bool QtAwesome::initFontAwesome()
     _namedCodepointsByStyle.insert(fa::fa_sharp_duotone_regular, _namedCodepointsByStyle.value(fa::fa_solid));
     _namedCodepointsByStyle.insert(fa::fa_sharp_duotone_light, _namedCodepointsByStyle.value(fa::fa_solid));
     _namedCodepointsByStyle.insert(fa::fa_sharp_duotone_thin, _namedCodepointsByStyle.value(fa::fa_solid));
+
+    #ifdef FONT_AWESOME_PRO_PLUS
+    _namedCodepointsByStyle.insert(fa::fa_chisel_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_etch_solid, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_jelly_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_jelly_duotone_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_jelly_fill_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_notdog_duotone_solid, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_notdog_solid, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_slab_press_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_slab_regular, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_thumbprint_light, _namedCodepointsByStyle.value(fa::fa_solid));
+    _namedCodepointsByStyle.insert(fa::fa_whiteboard_semibold, _namedCodepointsByStyle.value(fa::fa_solid));
+    #endif
 #else
     addToNamedCodePoints(fa::fa_regular, faRegularFreeIconArray, sizeof(faRegularFreeIconArray)/sizeof(QtAwesomeNamedIcon));
 #endif
@@ -560,7 +608,23 @@ int QtAwesome::stringToStyleEnum(const QString style) const
     else if (style == "fa-sharp-duotone-regular") return fa::fa_sharp_duotone_regular;
     else if (style == "fa-sharp-duotone-light") return fa::fa_sharp_duotone_light;
     else if (style == "fa-sharp-duotone-thin") return fa::fa_sharp_duotone_thin;
+
+    #ifdef FONT_AWESOME_PRO_PLUS
+    else if (style == "fa-chisel") return fa::fa_chisel_regular;
+    else if (style == "fa-etch") return fa::fa_etch_solid;
+    else if (style == "fa-jelly") return fa::fa_jelly_regular;
+    else if (style == "fa-jelly-duo") return fa::fa_jelly_duotone_regular;
+    else if (style == "fa-jelly-fill") return fa::fa_jelly_fill_regular;
+    else if (style == "fa-notdog") return fa::fa_notdog_solid;
+    else if (style == "fa-notdog-duo") return fa::fa_notdog_duotone_solid;
+    else if (style == "fa-slab") return fa::fa_slab_regular;
+    else if (style == "fa-slab-press") return fa::fa_slab_press_regular;
+    else if (style == "fa-thumbprint") return fa::fa_thumbprint_light;
+    else if (style == "fa-whiteboard") return fa::fa_whiteboard_semibold;
+    #endif
 #endif
+
+
     return fa::fa_solid;
 }
 
@@ -586,7 +650,21 @@ const QString QtAwesome::styleEnumToString(int style) const
         case fa::fa_sharp_duotone_regular: return "fa-sharp-duotone-regular";
         case fa::fa_sharp_duotone_light: return "fa-sharp-duotone-light";
         case fa::fa_sharp_duotone_thin: return "fa-sharp-duotone-thin";
+
+        #ifdef FONT_AWESOME_PRO_PLUS
+        case fa::fa_etch_solid: return "fa-chisel";
+        case fa::fa_jelly_regular: return "fa-jelly";
+        case fa::fa_jelly_duotone_regular: return "fa-jelly-duo";
+        case fa::fa_jelly_fill_regular: return "fa-jelly-fill";
+        case fa::fa_notdog_solid: return "fa-notdog";
+        case fa::fa_notdog_duotone_solid: return "fa-notdog-duo";
+        case fa::fa_slab_regular: return "fa-slab";
+        case fa::fa_slab_press_regular: return "fa-slab-press";
+        case fa::fa_thumbprint_light: return "fa-thumbprint";
+        case fa::fa_whiteboard_semibold: return "fa-whiteboard";
+        #endif
 #endif
+
     }
     return "fa-solid";
 }

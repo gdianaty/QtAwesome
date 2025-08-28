@@ -3,7 +3,7 @@
  *
  * MIT Licensed
  *
- * Copyright 2013-2024 - Reliable Bits Software by Blommers IT. All Rights Reserved.
+ * Copyright 2013-2025 - Ribit Software by Blommers IT. All Rights Reserved.
  * Author Rick Blommers
  */
 
@@ -16,11 +16,17 @@
 #include <QRect>
 #include <QVariantMap>
 
+// Having font awesome pro+ also means the usage of Font awesome pro
+#ifdef FONT_AWESOME_PRO_PLUS
+    #define FONT_AWESOME_PRO
+#endif
+
 #include "QtAwesomeAnim.h"
 
 /// A list of all icon-names with the codepoint (unicode-value) on the right
 /// You can use the names on the page  http://fortawesome.github.io/Font-Awesome/design.html
 #include "QtAwesomeEnumGenerated.h"
+
 
 namespace fa {
 
@@ -28,6 +34,7 @@ namespace fa {
 enum fa_styles {
     fa_solid = 0,
     fa_regular = 1,
+
 #ifdef FONT_AWESOME_PRO
     fa_light = 3,
     fa_thin = 4,
@@ -48,6 +55,27 @@ enum fa_styles {
     fa_sharp_duotone_light = 15,
     fa_sharp_duotone_thin = 16,
 #endif
+
+#ifdef FONT_AWESOME_PRO_PLUS
+    fa_chisel_regular = 17,
+
+    fa_etch_solid =  18,
+
+    fa_jelly_regular = 19,
+    fa_jelly_duotone_regular = 20,
+    fa_jelly_fill_regular = 21,
+
+    fa_notdog_duotone_solid =  22,
+    fa_notdog_solid = 23,
+
+    fa_slab_press_regular = 24,
+    fa_slab_regular = 25,
+
+    fa_thumbprint_light = 26,
+
+    fa_whiteboard_semibold = 27,
+#endif
+
     fa_brands = 2
 };
 
@@ -136,6 +164,34 @@ public:
     static const QFont::Weight FA_SHARP_DUOTONE_LIGHT_FONT_WEIGHT = QFont::Light;
     static const QFont::Weight FA_SHARP_DUOTONE_THIN_FONT_WEIGHT = QFont::ExtraLight;
 #endif
+
+#ifdef FONT_AWESOME_PRO_PLUS
+
+    static const QString FA_CHISEL_REGULAR_FONT_FILENAME; // fa-chisel fa-regular
+    static const QString FA_ETCH_SOLID_FONT_FILENAME; // fa-etch fa-solid
+    static const QString FA_JELLY_REGULAR_FONT_FILENAME; // fa-jelly fa-regular
+    static const QString FA_JELLY_DUOTONE_REGULAR_FONT_FILENAME; // fa-jelly-duo fa-regular
+    static const QString FA_JELLY_FILL_REGULAR_FONT_FILENAME; // fa-jelly-fill fa-regular
+    static const QString FA_NOTDOG_DUOTONE_SOLID_FONT_FILENAME; // fa-notdog-duo fa-solid
+    static const QString FA_NOTDOG_SOLID_FONT_FILENAME; // fa-notdog fa-solid
+    static const QString FA_SLAB_PRESS_REGULAR_FONT_FILENAME; // fa-slab-press fa-regular
+    static const QString FA_SLAB_REGULAR_FONT_FILENAME; // fa-slab fa-regular
+    static const QString FA_THUMBPRINT_LIGHT_FONT_FILENAME; // fa-thumbprint fa-light
+    static const QString FA_WHITEBOARD_SEMIBOLD_FONT_FILENAME; // fa-whiteboard fa-semibold
+
+    static const QFont::Weight FA_CHISEL_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_ETCH_SOLID_FONT_WEIGHT = QFont::Black;
+    static const QFont::Weight FA_JELLY_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_JELLY_DUOTONE_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_JELLY_FILL_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_NOTDOG_DUOTONE_SOLID_FONT_WEIGHT = QFont::Black;
+    static const QFont::Weight FA_NOTDOG_SOLID_FONT_WEIGHT = QFont::Black;
+    static const QFont::Weight FA_SLAB_PRESS_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_SLAB_REGULAR_FONT_WEIGHT = QFont::Normal;
+    static const QFont::Weight FA_THUMBPRINT_LIGHT_FONT_WEIGHT = QFont::Light;
+    static const QFont::Weight FA_WHITEBOARD_SEMIBOLD_FONT_WEIGHT = QFont::DemiBold;
+#endif
+
 
 public:
 

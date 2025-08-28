@@ -15,7 +15,6 @@ QtAwesomeAnimation::QtAwesomeAnimation(QWidget *parentWidget, int interval, int 
     , step_(step)
     , angle_(0.0f)
 {
-
 }
 
 void QtAwesomeAnimation::setup(QPainter &painter, const QRect &rect)
@@ -37,7 +36,6 @@ void QtAwesomeAnimation::setup(QPainter &painter, const QRect &rect)
         painter.translate(static_cast<qreal>(-x_center), -static_cast<qreal>(y_center));
     }
 }
-
 
 void QtAwesomeAnimation::update()
 {

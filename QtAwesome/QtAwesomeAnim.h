@@ -29,7 +29,6 @@ namespace fa {
         int interval_;
         int step_;
         float angle_;
-
     };
 } // namespace fa
 

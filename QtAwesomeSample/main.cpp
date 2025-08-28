@@ -1,7 +1,7 @@
 /**
  * MIT Licensed
  *
- * Copyright 2011-2022 - Reliable Bits Software by Blommers IT. All Rights Reserved.
+ * Copyright 2011-2025 - Ribit Software by Blommers IT. All Rights Reserved.
  * Author Rick Blommers
  */
 
@@ -19,6 +19,6 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     MainWindow w;
 
-    w.show(); 
+    w.show();
     return app.exec();
 }
