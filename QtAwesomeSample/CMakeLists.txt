@@ -13,7 +13,7 @@ add_subdirectory(../ QtAwesome)
 add_executable(QtAwesomeSample
   mainwindow.cpp
   main.cpp
-  )
+)
 
 target_link_libraries(QtAwesomeSample
   PUBLIC QtAwesome

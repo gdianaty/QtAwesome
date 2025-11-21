@@ -82,6 +82,9 @@ awesome->initFontAwesome();     // This line is important as it loads the font a
 - Add an accessor to this object (i.e. a global function, member of your application object, or whatever you like).
 - Use an icon name from the [Font Awesome Library](https://fontawesome.com/icons).
 
+For QML Usage please look at the embedded QtAwesomeSampleQml project.
+And the QML documentation in the readme.
+
 ## Examples
 
 Next the icons can be accessed via the `awesome->icon` method.
@@ -246,6 +249,38 @@ So the list of items used is:
 - style-disabled-off
 - style-active-off
 - style-selected-off
+
+## QML Usage
+
+For QML usage you can register the `QtAwesomeQuickImageProvider`.
+
+```c++
+fa::QtAwesome* awesome = new fa::QtAwesome(qApp);
+awesome->initFontAwesome();
+
+QQmlApplicationEngine engine;
+engine.addImageProvider("fa", new QtAwesomeQuickImageProvider(awesome));
+```
+
+After doing this it possible to access the icons via the following URL format:
+
+`image://fa/type/name?options`
+
+Some examples URLs
+
+- image://fa/solid/user
+- image://fa/regular/thumbs-up
+- image://fa/solid/beer?color=FFFF77
+
+QML Example:
+
+```qml
+Image {
+            anchors.fill: parent
+            source: "image://fa/regular/thumbs-up"
+
+}
+```
 
 ## Known Issues And Workarounds
 
