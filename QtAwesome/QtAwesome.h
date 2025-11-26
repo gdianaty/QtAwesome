@@ -216,6 +216,10 @@ public:
     /// Returns the font-name that is used as icon-map
     QString fontName(int style) const;
 
+    // Requests a pixmap which can be used by QQuickImageProvider
+    QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize);
+    void transformStringVariantOptions(QVariantMap& options);
+
 protected:
     int stringToStyleEnum(const QString style) const;
     const QString styleEnumToString(int style) const;

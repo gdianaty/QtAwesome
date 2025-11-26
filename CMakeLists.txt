@@ -41,6 +41,7 @@ project(QtAwesome VERSION ${QTAWESOME_VERSION} DESCRIPTION "Add Font Awesome ico
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick Qml)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -61,6 +62,14 @@ add_library(QtAwesome
 	QtAwesome/QtAwesomeFree.qrc
 	${QtAwesome_HEADERS}
 )
+
+if(Qt6Quick_FOUND)
+  list(APPEND QtAwesome_HEADERS QtAwesome/QtAwesomeQuickImageProvider.h)
+  target_link_libraries(QtAwesome PUBLIC
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Qml
+  )
+endif()
 
 include(GNUInstallDirs)
 

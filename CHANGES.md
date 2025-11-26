@@ -1,5 +1,7 @@
 # Changes
 
+- (2025-11-22) Update github workflow to include new os x and loose some deprecated platforms
+- (2025-11-21) #35, QML QuickImageProvider Support. (contribution by @Ivorforce)
 - (2025-08-28) #67, Update to Font Awesome 7, added Pro+ icon support
 - (2025-07-15) #66, Style name parsing (stringToStyleEnum) not working properly (contribution by @samapico)
 - (2025-05-08) #65, Support for Qt 6.9. Fix the CMakelist example

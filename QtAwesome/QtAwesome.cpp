@@ -17,6 +17,7 @@
 #include <QFontDatabase>
 #include <QFontMetrics>
 #include <QString>
+#include <QUrlQuery>
 
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
@@ -113,7 +114,7 @@ public:
         painter->setRenderHint(QPainter::HighQualityAntialiasing);
 #endif
 
-        QVariant var =options.value("anim");
+        QVariant var = options.value("anim");
         QtAwesomeAnimation* anim = var.value<QtAwesomeAnimation*>();
         if (anim) {
             anim->setup(*painter, rect);
@@ -586,6 +587,59 @@ QString QtAwesome::fontName(int style) const
 
     return _fontDetails[style].fontFamily();
 }
+
+/// \brief Requests a pixmap which can drictly be used by QQuickImageProvider
+///
+/// \param An identifier in the format "regular/name?option1=x&option2=y
+QPixmap QtAwesome::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
+{
+    QString baseId = id;
+    QVariantMap options;
+
+    int queryStart = id.indexOf('?');
+    if (queryStart != -1) {
+        baseId = id.left(queryStart);
+        QString queryString = id.mid(queryStart + 1);
+
+        QUrlQuery query(queryString);
+        for (const auto &item : query.queryItems()) {
+            options.insert(item.first, item.second);
+        }
+        transformStringVariantOptions(options);
+    }
+
+    int nameStart = baseId.indexOf("/");
+    if (nameStart != -1) {
+      baseId = "fa-" + baseId.left(nameStart) + " fa-" + baseId.mid(nameStart + 1);
+    } else {
+      baseId = "fa-solid fa-" + baseId;
+    }
+
+    QIcon icn = icon(baseId, options);
+    QSize actualSize = requestedSize.isValid() ? requestedSize : QSize(128, 128);
+    if (size) {
+      *size = actualSize;
+    }
+
+    return icn.pixmap(actualSize);
+}
+
+
+/// \Brief Transforms a String based hash map to the correct objec types.
+///        All color types which aren't colors are converted to QColor objects and Interpreted
+///        as HEX codes (# is optional)
+void QtAwesome::transformStringVariantOptions(QVariantMap& options)
+{
+    for (auto i = options.cbegin(), end = options.cend(); i != end; ++i) {
+        QString key = i.key();
+        if (key.contains("color") && i.value().userType() == QMetaType::QString) {
+            QString value = i.value().value<QString>();
+            QColor colorValue = QColor(value[0] == '#' ? QColor(value) : QColor(QString("#%1").arg(value)));
+            options[key] = colorValue;
+        }
+    }
+}
+
 
 int QtAwesome::stringToStyleEnum(const QString style) const
 {
