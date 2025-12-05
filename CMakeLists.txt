@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
 
 #Set The Current Version Number to use as fallback if GIT Fails.
-set(QTAWESOME_VERSION_MAJOR 6)
-set(QTAWESOME_VERSION_MINOR 5)
-set(QTAWESOME_VERSION_PATCH 1)
-set(QTAWESOME_VERSION_TWEAK 0)
+set(QTAWESOME_VERSION_MAJOR 7)
+set(QTAWESOME_VERSION_MINOR 0)
+set(QTAWESOME_VERSION_PATCH 0)
+set(QTAWESOME_VERSION_TWEAK 4)
+
 # Get the version from git if it's a git repository
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   find_package(Git)
@@ -16,7 +17,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       ERROR_QUIET
       OUTPUT_STRIP_TRAILING_WHITESPACE)
       string(FIND ${GITREV} "font-awesome-" isRev)
-      if(NOT ifRev EQUAL -1)
+      if(NOT isRev EQUAL -1)
         string(REGEX MATCH [0-9]+ MAJOR ${GITREV})
         string(REGEX MATCH \\.[0-9]+ MINOR ${GITREV})
         string(REPLACE "." "" MINOR "${MINOR}")
