@@ -189,20 +189,25 @@ public:
 
     virtual void paint(QPainter* painter, const QRect& rect, QIcon::Mode mode, QIcon::State state)
     {
-        Q_UNUSED(mode );
-        Q_UNUSED(state );
-        iconPainterRef_->paint(awesomeRef_, painter, rect, mode, state, options_);
+		Q_UNUSED(mode);
+		Q_UNUSED(state);
+		// Merge current defaults with per-icon overrides at paint time so that
+		// changes to the global defaults (e.g. palette/color-scheme changes) are
+		// always reflected immediately without recreating the icon.
+		QVariantMap options = mergeOptions(awesomeRef_->defaultOptions(), options_);
+		iconPainterRef_->paint(awesomeRef_, painter, rect, mode, state, options);
     }
 
     virtual QPixmap pixmap(const QSize& size, QIcon::Mode mode, QIcon::State state)
     {
-        QPixmap pm(size);
-        pm.fill(Qt::transparent); // we need transparency
-        {
-            QPainter p(&pm);
-            paint(&p, QRect(QPoint(0,0),size), mode, state);
-        }
-        return pm;
+		QPixmap pm(size);
+		pm.fill(Qt::transparent);
+		{
+			QPainter p(&pm);
+			paint(&p, QRect(QPoint(0, 0), size), mode, state);
+		}
+		return pm;
+
     }
 
 private:
@@ -466,6 +471,11 @@ QVariant QtAwesome::defaultOption(const QString& name)
     return _defaultOptions.value( name );
 }
 
+QVariantMap QtAwesome::defaultOptions() const
+{
+    return _defaultOptions;
+}
+
 // internal helper method to merge to option maps
 static QVariantMap mergeOptions(const QVariantMap& defaults, const QVariantMap& override)
 {
@@ -486,12 +496,12 @@ static QVariantMap mergeOptions(const QVariantMap& defaults, const QVariantMap& 
 /// </code>
 QIcon QtAwesome::icon(int style, int character, const QVariantMap &options)
 {
-    // create a merged QVariantMap to have default options and icon-specific options
-    QVariantMap optionMap = mergeOptions(_defaultOptions, options);
-    optionMap.insert("text", QString( QChar(character)) );
-    optionMap.insert("style", style);
+	// Defaults are merged at paint time by QtAwesomeIconPainterIconEngine.
+	QVariantMap optionMap = options;
+	optionMap.insert("text", QString(QChar(character)));
+	optionMap.insert("style", style);
 
-    return icon( _fontIconPainter, optionMap );
+	return icon(_fontIconPainter, optionMap);
 }
 
 /// Creates an icon with the given name
@@ -504,37 +514,36 @@ QIcon QtAwesome::icon(int style, int character, const QVariantMap &options)
 /// @param options extra option to pass to the icon renderer
 QIcon QtAwesome::icon(const QString& name, const QVariantMap& options)
 {
-    // split the string in a style and icon name (and skip the fa- prefix if given)
-    int spaceIndex = name.indexOf(' ');
-    int style = fa::fa_solid;
-    QString iconName;
+	int spaceIndex = name.indexOf(' ');
+	int style = fa::fa_solid;
+	QString iconName;
 
-    if( spaceIndex > 0) {
-        QString styleName = name.left(spaceIndex);
-        style = stringToStyleEnum(styleName.startsWith("fa-") ? styleName : "fa-" + styleName);
-        iconName = name.mid(spaceIndex + 1);
-    } else {
-        iconName = name;
-    }
+	if (spaceIndex > 0) {
+		QString styleName = name.left(spaceIndex);
+		style = stringToStyleEnum(styleName.startsWith("fa-") ? styleName : "fa-" + styleName);
+		iconName = name.mid(spaceIndex + 1);
+	}
+	else {
+		iconName = name;
+	}
 
-    if( iconName.startsWith("fa-")) {
-        iconName = iconName.mid(3);
-    }
+	if (iconName.startsWith("fa-")) {
+		iconName = iconName.mid(3);
+	}
 
-    // when it's a named codepoint
-    if (_namedCodepointsByStyle.contains(style) && _namedCodepointsByStyle[style]->contains(iconName)) {
-        return icon(style, _namedCodepointsByStyle[style]->value(iconName), options);
-    }
+	if (_namedCodepointsByStyle.contains(style) && _namedCodepointsByStyle[style]->contains(iconName)) {
+		return icon(style, _namedCodepointsByStyle[style]->value(iconName), options);
+	}
 
-    // create a merged QVariantMap to have default options and icon-specific options
-    QVariantMap optionMap = mergeOptions(_defaultOptions, options);
-    optionMap.insert("style", style);
+	// Store only the per-icon overrides (+ style key).
+	// Defaults are merged at paint time by QtAwesomeIconPainterIconEngine.
+	QVariantMap optionMap = options;
+	optionMap.insert("style", style);
 
-    // this method first tries to retrieve the icon via the painter map
-    QtAwesomeIconPainter* painter = _painterMap.value(name);
-    if (!painter) return QIcon();
+	QtAwesomeIconPainter* painter = _painterMap.value(name);
+	if (!painter) return QIcon();
 
-    return icon(painter, optionMap);
+	return icon(painter, optionMap);
 }
 
 /// Create a dynamic icon by simlpy supplying a painter object

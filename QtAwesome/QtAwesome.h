@@ -204,6 +204,7 @@ public:
 
     void setDefaultOption(const QString& name, const QVariant& value);
     QVariant defaultOption(const QString& name);
+    QVariantMap defaultOptions() const;  // <-- add this
 
     QIcon icon(int style, int character, const QVariantMap& options = QVariantMap());
     QIcon icon(const QString& name, const QVariantMap& options = QVariantMap());
