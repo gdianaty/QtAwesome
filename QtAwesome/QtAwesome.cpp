@@ -42,6 +42,20 @@ namespace fa {
 
 #include "QtAwesomeStringGenerated.h"
 
+// internal helper method to merge to option maps
+static QVariantMap mergeOptions(const QVariantMap& defaults, const QVariantMap & override)
+{
+	QVariantMap result = defaults;
+	if (!override.isEmpty()) {
+		QMapIterator<QString, QVariant> itr(override);
+		while (itr.hasNext()) {
+			itr.next();
+			result.insert(itr.key(), itr.value());
+		}
+	}
+	return result;
+}
+
 QtAwesomeIconPainter::~QtAwesomeIconPainter()
 {
 }
@@ -476,19 +490,6 @@ QVariantMap QtAwesome::defaultOptions() const
     return _defaultOptions;
 }
 
-// internal helper method to merge to option maps
-static QVariantMap mergeOptions(const QVariantMap& defaults, const QVariantMap& override)
-{
-    QVariantMap result= defaults;
-    if (!override.isEmpty()) {
-        QMapIterator<QString,QVariant> itr(override);
-        while (itr.hasNext()) {
-            itr.next();
-            result.insert(itr.key(), itr.value());
-        }
-    }
-    return result;
-}
 
 /// Creates an icon with the given code-point for given style
 /// <code>
